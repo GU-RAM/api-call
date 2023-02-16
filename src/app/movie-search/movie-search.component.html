@@ -1,0 +1,6 @@
+<h2>SEARCH YOUR MOVIE</h2>
+<input type="text" [formControl]="searchMovie" />
+
+<div class="searchedInfo" *ngIf="movieSearchResult$ | async as movie">
+  <p>{{ movie.Title }}</p>
+</div>
