@@ -27,7 +27,7 @@ export class ThreeInputsSearchComponent {
   searchMovie2 = new FormControl();
   searchMovie3 = new FormControl();
 
-  moviesSearchResult$: any;
+  moviesSearchResult$: Observable<any> | undefined;
 
   constructor(
     private apiCallsService: ApiCallsService,
@@ -76,7 +76,7 @@ export class ThreeInputsSearchComponent {
       }),
       switchMap((minutesCountries) => {
         Array.from(new Set());
-        let checkedCountries: any[] = [
+        const checkedCountries: any[] = [
           ...new Set(
             minutesCountries
               .map((minutesCountry: any) => minutesCountry.country)
@@ -86,8 +86,8 @@ export class ThreeInputsSearchComponent {
 
         const populations = checkedCountries.map((country) => {
           return this.apiCallsService.searchCurrencyFlagName(country).pipe(
-            switchMap((countryInfo) => {
-              return of(countryInfo.population);
+            map((countryInfo) => {
+              return countryInfo.population;
             })
           );
         });
@@ -103,25 +103,20 @@ export class ThreeInputsSearchComponent {
           })
         );
       }),
-      switchMap((populaTionMinutes: any) => {
-        console.log(populaTionMinutes.population);
-        let totalPopulation = 0;
-        let totalMinutes = 0;
-        populaTionMinutes.population.forEach(
-          (populations: number) => (totalPopulation += populations)
+      map((populaTionMinutes: any) => {
+        const totalPopulation = populaTionMinutes.population.reduce(
+          (a: any, c: any) => a + c,
+          0
         );
-
-        populaTionMinutes.minutes.forEach(
-          (minute: number) => (totalMinutes += minute)
+        const totalMinutes = populaTionMinutes.minutes.reduce(
+          (a: any, c: any) => a + c,
+          0
         );
-
-        return forkJoin([of(totalPopulation), of(totalMinutes)]);
+        return {
+          totalPopulation,
+          totalMinutes,
+        };
       })
-      // catchError((error: HttpErrorResponse) => {
-      //   this.toastr.error(error.message);
-
-      //   return null;
-      // })
     );
   }
 }

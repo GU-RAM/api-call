@@ -5,11 +5,10 @@
 </div>
 
 <div class="three-input-info" *ngIf="moviesSearchResult$ | async as movieInfo">
-  <ng-template *ngIf="movieInfo[0] as totalPopulation"></ng-template>
-  <p *ngIf="movieInfo[0] as totalPopulation">
-    Total Population is: {{ totalPopulation }}
+  <p *ngIf="movieInfo.totalPopulation">
+    Total Population is: {{ movieInfo.totalPopulation }}
   </p>
-  <p *ngIf="movieInfo[1] as totalMinutes">
-    Total Minutes is: {{ totalMinutes }}
+  <p *ngIf="movieInfo.totalMinutes">
+    Total Minutes is: {{ movieInfo.totalMinutes }}
   </p>
 </div>
