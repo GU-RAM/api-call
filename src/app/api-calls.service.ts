@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Movie } from './search.model';
+import { mergeMap, Observable, of, switchMap } from 'rxjs';
+import { Country, Movie, RunTime } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
@@ -13,11 +13,32 @@ export class ApiCallsService {
     @Inject(API_URLS) private apiUrls: { [key: string]: string }
   ) {}
 
-  searchMovies(movieName: string): Observable<Movie> {
+  searchMovies(movieName: string): Observable<any> {
     const params = new HttpParams().set('t', movieName);
 
-    return this.http.get<Movie>(
-      `${this.apiUrls['apiBaseMovies']}/?${params}}&apikey=c69771f5`
+    return this.http.get<Movie>(`${this.apiUrls['apiBaseMovies']}/`, {
+      params,
+    });
+  }
+
+  searchCurrencyFlagName(country: string): Observable<Country> {
+    console.log(country);
+    // const params = new HttpParams().set('', country);
+
+    const countryData = this.http.get<Country>(
+      `${this.apiUrls['apiBaseCountries']}/name/${country.trim()}?fullText=true`
+    );
+
+    return countryData.pipe(
+      mergeMap((country: any) => {
+        const country0 = country[0];
+        return of({
+          name: country0.name.common,
+          currencies: country0.currencies,
+          flags: country0.flags.png,
+          population: country0.population,
+        });
+      })
     );
   }
 }

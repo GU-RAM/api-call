@@ -1,0 +1,15 @@
+<div class="three-input-search">
+  <input type="text" placeholder="Search movie" [formControl]="searchMovie1" />
+  <input type="text" placeholder="Search movie" [formControl]="searchMovie2" />
+  <input type="text" placeholder="Search movie" [formControl]="searchMovie3" />
+</div>
+
+<div class="three-input-info" *ngIf="moviesSearchResult$ | async as movieInfo">
+  <ng-template *ngIf="movieInfo[0] as totalPopulation"></ng-template>
+  <p *ngIf="movieInfo[0] as totalPopulation">
+    Total Population is: {{ totalPopulation }}
+  </p>
+  <p *ngIf="movieInfo[1] as totalMinutes">
+    Total Minutes is: {{ totalMinutes }}
+  </p>
+</div>

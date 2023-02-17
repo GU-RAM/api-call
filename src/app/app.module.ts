@@ -11,9 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ThreeInputsSearchComponent } from './three-inputs-search/three-inputs-search.component';
 
 @NgModule({
-  declarations: [AppComponent, MovieSearchComponent],
+  declarations: [AppComponent, MovieSearchComponent, ThreeInputsSearchComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

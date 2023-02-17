@@ -1,6 +1,24 @@
-<h2>SEARCH YOUR MOVIE</h2>
-<input type="text" [formControl]="searchMovie" />
+<div class="movi-search-container">
+  <h2>SEARCH YOUR MOVIE</h2>
+  <input type="text" [formControl]="searchMovie" />
 
-<div class="searchedInfo" *ngIf="movieSearchResult$ | async as movie">
-  <p>{{ movie.Title }}</p>
+  <ng-container *ngIf="movieSearchResult$ | async as movieInfo">
+    <ul class="searched-movie" *ngIf="movieInfo[0] as movie">
+      <li>Movie Title: {{ movie.Title }}</li>
+      <li>Actors: {{ movie.Actors }}</li>
+      <li>Released: {{ movie.Released }}</li>
+      <li>Movie is {{ calculateMovieAge(movie.Released) }} years old</li>
+    </ul>
+    <div class="movie-additional-info">
+      <h2>Countries movie was directed and their currencies:</h2>
+      <div *ngFor="let countriesInfo of movieInfo[1]">
+        <p>Country name: {{ countriesInfo.name }}</p>
+        <p>
+          Flag:
+          <img src="{{ countriesInfo.flags }}" alt="" />
+        </p>
+        <p>Currencies: {{ getCurrencies(countriesInfo.currencies) }}</p>
+      </div>
+    </div>
+  </ng-container>
 </div>
