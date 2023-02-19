@@ -1,0 +1,45 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  overflow: hidden;
+}
+
+li {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 18px;
+  position: relative;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    color: coral;
+  }
+}
+
+li.active {
+  color: coral;
+}
+
+li:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: yellow;
+  transition: width 0.3s;
+}
+
+li.active:after {
+  width: 100%;
+}
+
+li:hover:after {
+  width: 100%;
+}

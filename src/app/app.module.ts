@@ -7,14 +7,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { API_URLS } from './token';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ThreeInputsSearchComponent } from './three-inputs-search/three-inputs-search.component';
+import { AppRoutingModule } from './app.routing.module';
+import { FavouriteMovieListComponent } from './favourite-movie-list/favourite-movie-list.component';
+import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-movie.component';
 
 @NgModule({
-  declarations: [AppComponent, MovieSearchComponent, ThreeInputsSearchComponent],
+  declarations: [
+    AppComponent,
+    MovieSearchComponent,
+    ThreeInputsSearchComponent,
+    FavouriteMovieListComponent,
+    RateCommentMovieComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -23,6 +32,8 @@ import { ThreeInputsSearchComponent } from './three-inputs-search/three-inputs-s
     BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [{ provide: API_URLS, useValue: environment }],
   bootstrap: [AppComponent],

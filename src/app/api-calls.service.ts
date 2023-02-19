@@ -1,13 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { mergeMap, Observable, of, switchMap } from 'rxjs';
-import { Country, Movie, RunTime } from './search.model';
+import { environment } from 'src/environments/environment';
+import { Country, Movie, RunTime, SaveMovie } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiCallsService {
+  favoriteMovie: Movie | undefined;
+
   constructor(
     private http: HttpClient,
     @Inject(API_URLS) private apiUrls: { [key: string]: string }
@@ -23,7 +26,6 @@ export class ApiCallsService {
 
   searchCurrencyFlagName(country: string): Observable<Country> {
     console.log(country);
-    // const params = new HttpParams().set('', country);
 
     const countryData = this.http.get<Country>(
       `${this.apiUrls['apiBaseCountries']}/name/${country.trim()}?fullText=true`
@@ -40,5 +42,9 @@ export class ApiCallsService {
         });
       })
     );
+  }
+
+  saveMovie(savedMovie: SaveMovie) {
+    return this.http.post(`${environment.jsonServerBase}/movies`, savedMovie);
   }
 }

@@ -1,2 +1,18 @@
 <!-- <app-movie-search></app-movie-search> -->
-<app-three-inputs-search></app-three-inputs-search>
+<!-- <app-three-inputs-search></app-three-inputs-search> -->
+<ul>
+  <li
+    routerLink=""
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Main Movie Search
+  </li>
+  <li routerLink="/population" routerLinkActive="active">
+    Population and Total Minutes
+  </li>
+  <li routerLink="/favourite-movie-list" routerLinkActive="active">
+    Favourite Movie List
+  </li>
+</ul>
+<router-outlet></router-outlet>

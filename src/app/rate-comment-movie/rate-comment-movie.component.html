@@ -1,0 +1,47 @@
+<div class="movie-comment-rate-save" *ngIf="favoriteMovieInfo">
+  <div class="movie-comment-rate">
+    <div class="movie-comment-rate-poster">
+      <img [src]="favoriteMovieInfo.Poster" alt="" />
+    </div>
+
+    <div class="movievinfo">
+      <h2>{{ favoriteMovieInfo.Title }}</h2>
+      <ul>
+        <li>Actors: {{ favoriteMovieInfo.Actors }}</li>
+        <li>Released: {{ favoriteMovieInfo.Released }}</li>
+        <li>Age: Movie is {{ favoriteMovieInfo.Released }} years old</li>
+        <li>
+          Country name:
+          <span *ngFor="let countryiInfo of favoriteMovieInfo.CountryInfo"
+            >{{ countryiInfo.name }}
+          </span>
+        </li>
+        <li>
+          Flag:
+          <span *ngFor="let countryiInfo of favoriteMovieInfo.CountryInfo">
+            <img src="{{ countryiInfo.flags }}" alt="" />
+          </span>
+        </li>
+        <li>
+          Currencies:
+          <span *ngFor="let countryiInfo of favoriteMovieInfo.CountryInfo">
+            {{ getCurrencies(countryiInfo.currencies) }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="add-comment">
+    <textarea type="text" placeholder="write a comment" [(ngModel)]="comment">{{
+      comment
+    }}</textarea>
+  </div>
+  <button
+    class="save-movie"
+    (click)="addFavoriteMovie(favoriteMovieInfo, comment)"
+    routerLink="/favourite-movie-list"
+    routerLinkActive="active"
+  >
+    SAVE
+  </button>
+</div>

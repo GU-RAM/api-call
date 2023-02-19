@@ -1,23 +1,49 @@
 <div class="movi-search-container">
   <h2>SEARCH YOUR MOVIE</h2>
   <input type="text" [formControl]="searchMovie" />
-
   <ng-container *ngIf="movieSearchResult$ | async as movieInfo">
-    <ul class="searched-movie" *ngIf="movieInfo[0] as movie">
-      <li>Movie Title: {{ movie.Title }}</li>
-      <li>Actors: {{ movie.Actors }}</li>
-      <li>Released: {{ movie.Released }}</li>
-      <li>Movie is {{ calculateMovieAge(movie.Released) }} years old</li>
-    </ul>
-    <div class="movie-additional-info">
-      <h2>Countries movie was directed and their currencies:</h2>
-      <div *ngFor="let countriesInfo of movieInfo[1]">
-        <p>Country name: {{ countriesInfo.name }}</p>
-        <p>
-          Flag:
-          <img src="{{ countriesInfo.flags }}" alt="" />
-        </p>
-        <p>Currencies: {{ getCurrencies(countriesInfo.currencies) }}</p>
+    <div class="searched-movie" *ngIf="movieInfo[0] as movie">
+      <div class="searched-movie-poster">
+        <img [src]="movie.Poster" alt="" />
+      </div>
+
+      <div class="movie-info">
+        <h2>{{ movie.Title }}</h2>
+        <ul>
+          <li>Actors: {{ movie.Actors }}</li>
+          <li>Released: {{ movie.Released }}</li>
+          <li>
+            Age: Movie is {{ calculateMovieAge(movie.Released) }} years old
+          </li>
+          <ng-container>
+            <li>
+              Country name:
+              <span *ngFor="let countriesInfo of movieInfo[1]"
+                >{{ countriesInfo.name }}
+              </span>
+            </li>
+            <li>
+              Flag:
+              <span *ngFor="let countriesInfo of movieInfo[1]">
+                <img src="{{ countriesInfo.flags }}" alt="" />
+              </span>
+            </li>
+            <li>
+              Currencies:
+              <span *ngFor="let countriesInfo of movieInfo[1]">
+                {{ getCurrencies(countriesInfo.currencies) }}
+              </span>
+            </li>
+          </ng-container>
+        </ul>
+        <button
+          class="add-to-favourite"
+          routerLink="/rate-comment-add"
+          routerLinkActive="active"
+          (click)="shareFavoriteMovie(movieInfo[0], movieInfo[1])"
+        >
+          Add to my fovarourite
+        </button>
       </div>
     </div>
   </ng-container>

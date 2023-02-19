@@ -1,124 +1,96 @@
-// Variables
-$primary-color: #4285f4;
-$secondary-color: #ea4335;
-$background-color: #f2f2f2;
-$font-family: "Open Sans", sans-serif;
-
-ul li {
-  list-style: none;
-}
-
-// Styles
 .movi-search-container {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  background-color: $background-color;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 
   h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
     text-transform: uppercase;
-    color: $primary-color;
-    animation: fadeIn 1s ease-in-out;
+    letter-spacing: 2px;
   }
 
   input[type="text"] {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
+    width: 300px;
+    height: 20px;
     border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 10px $primary-color;
-    }
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 
   .searched-movie {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: slideUp 1s ease-in-out;
-
-    p {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: $secondary-color;
-
-      &:nth-child(2n) {
-        color: $primary-color;
-      }
-    }
-  }
-
-  .movie-additional-info {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    background-color: #333333;
+    margin-top: 20px;
 
-    h2 {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: $primary-color;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    div {
-      margin-top: 1rem;
+    .searched-movie-poster {
+      flex: 1;
+      height: 100%;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
 
-      p {
-        margin: 0.5rem 0;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: $secondary-color;
-      }
-
       img {
-        width: 50px;
-        height: auto;
+        max-width: 100%;
+        max-height: 100%;
       }
     }
-  }
-}
 
-// Animations
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .movie-info {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
 
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+      h1 {
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 30px 0;
+        padding: 0;
+        color: white;
+
+        li {
+          margin-bottom: 20px;
+
+          img {
+            max-width: 30px;
+            max-height: 20px;
+            margin-left: 10px;
+          }
+        }
+      }
+      .add-to-favourite {
+        text-transform: uppercase;
+        background-color: white;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s, transform 0.2s;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          transform: scale(1.05);
+        }
+      }
+    }
   }
 }

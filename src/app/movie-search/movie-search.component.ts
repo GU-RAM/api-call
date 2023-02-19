@@ -35,21 +35,18 @@ export class MovieSearchComponent {
   ) {}
 
   private getEmptyResult() {
-    const empty: Movie | Country = {
+    const empty = {
       Title: '',
       Released: 0,
       Actors: '',
       Countries: [],
-      // name: { common: '' },
-      // currencies: {},
-      // flags: { png: '' },
-      // population: 0,
+      Poster: '',
     };
 
     return of(empty);
   }
 
-  private getOnMovieInfo(info: any): Movie {
+  private getOnMovieInfo(info: Movie) {
     return {
       Title: info?.Title,
       Released: info?.Released,
@@ -57,6 +54,7 @@ export class MovieSearchComponent {
         .map((el: string) => el.split(' ')[0])
         .join(', '),
       Countries: info?.Country.split(','),
+      Poster: info?.Poster,
     };
   }
 
@@ -70,6 +68,13 @@ export class MovieSearchComponent {
     return Object.keys(currencies)[0];
   }
 
+  shareFavoriteMovie(movieInfo: Movie, countryInfo: any): any {
+    return (this.apiCallsService.favoriteMovie = {
+      ...movieInfo,
+      CountryInfo: countryInfo,
+    });
+  }
+
   ngOnInit() {
     this.movieSearchResult$ = this.searchMovie.valueChanges.pipe(
       debounceTime(700),
@@ -77,6 +82,7 @@ export class MovieSearchComponent {
       switchMap((movieName) => {
         if (movieName.length > 3 && movieName.length < 100) {
           return this.apiCallsService.searchMovies(movieName).pipe(
+            tap(console.log),
             map((info: any) => {
               return this.getOnMovieInfo(info);
             })
@@ -86,11 +92,13 @@ export class MovieSearchComponent {
       }),
       concatMap((movie) => {
         const countries$: Observable<Country>[] = movie.Countries.map(
-          (country) => this.apiCallsService.searchCurrencyFlagName(country)
+          (country: string) =>
+            this.apiCallsService.searchCurrencyFlagName(country)
         );
 
         return forkJoin([of(movie), forkJoin(countries$)]);
       }),
+      tap(console.log),
       catchError((error: HttpErrorResponse) => {
         this.toastr.error(error.message);
 
