@@ -49,8 +49,8 @@ export class ApiCallsService {
     return this.http.post(`${environment.jsonServerBase}/movies`, savedMovie);
   }
 
-  getSavedMovie(): Observable<any> {
-    return this.http.get(`${environment.jsonServerBase}/movies`);
+  getSavedMovie(): Observable<SavedMovie[]> {
+    return this.http.get<SavedMovie[]>(`${environment.jsonServerBase}/movies`);
   }
 
   deleteSavedMovie(id: string) {

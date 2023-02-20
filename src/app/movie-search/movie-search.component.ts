@@ -112,7 +112,7 @@ export class MovieSearchComponent {
             this.apiCallsService.searchCurrencyFlagName(country)
         );
 
-        const favoriteMovies$: Observable<SavedMovie> =
+        const favoriteMovies$: Observable<SavedMovie[]> =
           this.apiCallsService.getSavedMovie();
 
         return forkJoin([of(movie), forkJoin(countries$), favoriteMovies$]);

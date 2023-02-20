@@ -37,6 +37,17 @@ export class MovieDetailsComponent {
     this.selectedMovieId = undefined;
   }
 
+  fetchFavouriteMovie() {
+    const favoriteMovieId = Number(this.activatedRoute.snapshot.params['id']);
+    if (favoriteMovieId) {
+      this.apiCallService.getSavedMovie().subscribe((movies: SavedMovie[]) => {
+        this.selectedMovie = movies.filter((movie: SavedMovie) => {
+          return movie.id === favoriteMovieId;
+        });
+      });
+    }
+  }
+
   updateComment(id: string, movie: SavedMovie) {
     const Comment = this.textarea?.nativeElement.value;
     return this.apiCallService
@@ -46,18 +57,11 @@ export class MovieDetailsComponent {
           (this.selectedMovieId = undefined);
         this.apiCallService.favoriteMoviesList$ =
           this.apiCallService.getSavedMovie();
+        this.fetchFavouriteMovie();
       });
   }
 
   ngOnInit(): void {
-    const favoriteMovieId = Number(this.activatedRoute.snapshot.params['id']);
-    if (favoriteMovieId) {
-      this.apiCallService.getSavedMovie().subscribe((movies: SavedMovie) => {
-        const moviesArray = Object.values(movies);
-        this.selectedMovie = moviesArray.filter((movie: SavedMovie) => {
-          return movie.id === favoriteMovieId;
-        });
-      });
-    }
+    this.fetchFavouriteMovie();
   }
 }
