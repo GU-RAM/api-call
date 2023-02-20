@@ -2,15 +2,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Country, Movie, SavedMovie } from './search.model';
+import { Country, Movie } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiCallsService {
-  favoriteMovie: SavedMovie | undefined;
-  favoriteMoviesList$: Observable<SavedMovie[]> | undefined;
+  favoriteMovie: Movie | undefined;
+  favoriteMoviesList$: Observable<Movie[]> | undefined;
 
   constructor(
     private http: HttpClient,
@@ -45,19 +45,19 @@ export class ApiCallsService {
     );
   }
 
-  saveMovie(savedMovie: SavedMovie) {
+  saveMovie(savedMovie: Movie) {
     return this.http.post(`${environment.jsonServerBase}/movies`, savedMovie);
   }
 
-  getSavedMovie(): Observable<SavedMovie[]> {
-    return this.http.get<SavedMovie[]>(`${environment.jsonServerBase}/movies`);
+  getSavedMovie(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${environment.jsonServerBase}/movies`);
   }
 
   deleteSavedMovie(id: string | number) {
     return this.http.delete(`${environment.jsonServerBase}/movies/${id}`);
   }
 
-  updateComment(id: string | number, movie: SavedMovie) {
+  updateComment(id: string | number, movie: Movie) {
     return this.http.patch(`${environment.jsonServerBase}/movies/${id}`, movie);
   }
 }

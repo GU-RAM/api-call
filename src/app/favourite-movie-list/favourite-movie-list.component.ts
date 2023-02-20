@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
-import { SavedMovie } from '../search.model';
+import { Movie } from '../search.model';
 
 @Component({
   selector: 'app-favourite-movie-list',
@@ -9,7 +9,7 @@ import { SavedMovie } from '../search.model';
   styleUrls: ['./favourite-movie-list.component.scss'],
 })
 export class FavouriteMovieListComponent {
-  movieList$: Observable<SavedMovie[]> | undefined;
+  movieList$: Observable<Movie[]> | undefined;
 
   constructor(public apiCallService: ApiCallsService) {}
 

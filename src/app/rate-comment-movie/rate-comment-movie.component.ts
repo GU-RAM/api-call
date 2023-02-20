@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ApiCallsService } from '../api-calls.service';
-import { Currency, SavedMovie } from '../search.model';
+import { Currency, Movie } from '../search.model';
 
 @Component({
   selector: 'app-rate-comment-movie',
@@ -8,7 +8,7 @@ import { Currency, SavedMovie } from '../search.model';
   styleUrls: ['./rate-comment-movie.component.scss'],
 })
 export class RateCommentMovieComponent {
-  favoriteMovieInfo: SavedMovie | undefined;
+  favoriteMovieInfo: Movie | undefined;
 
   comment: string = '';
 
@@ -20,7 +20,7 @@ export class RateCommentMovieComponent {
     return Object.keys(currencies)[0];
   }
 
-  addFavoriteMovie(movie: SavedMovie, comment: string) {
+  addFavoriteMovie(movie: Movie, comment: string) {
     this.apiCallsService
       .saveMovie({ ...movie, Comment: comment })
       .subscribe(() => console.log());

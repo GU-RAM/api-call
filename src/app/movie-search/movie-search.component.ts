@@ -15,12 +15,7 @@ import {
 } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
 import { ToastrService } from 'ngx-toastr';
-import {
-  Country,
-  Movie,
-  Currency,
-  SavedMovie as SavedMovie,
-} from '../search.model';
+import { Country, Movie, Currency } from '../search.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -75,9 +70,9 @@ export class MovieSearchComponent {
   }
 
   shareFavoriteMovie(
-    movieInfo: SavedMovie,
-    countryInfo: any,
-    favoriteMovies: SavedMovie[]
+    movieInfo: Movie,
+    countryInfo: Country[],
+    favoriteMovies: Movie[]
   ) {
     if (favoriteMovies.every((movie) => movie.Title !== movieInfo?.Title)) {
       this.apiCallsService.favoriteMovie = {
@@ -99,6 +94,10 @@ export class MovieSearchComponent {
           return this.apiCallsService.searchMovies(movieName).pipe(
             map((info: Movie) => {
               return (this.addedMovieButton = false), this.getOnMovieInfo(info);
+            }),
+            catchError((error: HttpErrorResponse) => {
+              this.toastr.error(error.message);
+              return this.getEmptyResult();
             })
           );
         }
@@ -110,15 +109,15 @@ export class MovieSearchComponent {
             this.apiCallsService.searchCurrencyFlagName(country)
         );
 
-        const favoriteMovies$: Observable<SavedMovie[]> =
+        const favoriteMovies$: Observable<Movie[]> =
           this.apiCallsService.getSavedMovie();
 
-        return forkJoin([of(movie), forkJoin(countries$), favoriteMovies$]);
+        return countries$.length
+          ? forkJoin([of(movie), forkJoin(countries$), favoriteMovies$])
+          : of(movie);
       }),
       tap(console.log),
-      catchError((error: HttpErrorResponse) => {
-        this.toastr.error(error.message);
-
+      catchError(() => {
         return this.getEmptyResult();
       })
     );

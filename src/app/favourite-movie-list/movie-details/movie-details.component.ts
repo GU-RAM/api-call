@@ -1,9 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs';
 import { ApiCallsService } from 'src/app/api-calls.service';
-import { Movie, SavedMovie } from 'src/app/search.model';
+import { Movie } from 'src/app/search.model';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,7 +11,7 @@ import { Movie, SavedMovie } from 'src/app/search.model';
 })
 export class MovieDetailsComponent {
   @ViewChild('textarea') textarea: ElementRef | undefined;
-  selectedMovie: SavedMovie[] | undefined;
+  selectedMovie: Movie[] | undefined;
   selectedMovieId: string | number | undefined;
 
   constructor(
@@ -40,15 +39,15 @@ export class MovieDetailsComponent {
   fetchFavouriteMovie() {
     const favoriteMovieId = Number(this.activatedRoute.snapshot.params['id']);
     if (favoriteMovieId) {
-      this.apiCallService.getSavedMovie().subscribe((movies: SavedMovie[]) => {
-        this.selectedMovie = movies.filter((movie: SavedMovie) => {
+      this.apiCallService.getSavedMovie().subscribe((movies: Movie[]) => {
+        this.selectedMovie = movies.filter((movie: Movie) => {
           return movie.id === favoriteMovieId;
         });
       });
     }
   }
 
-  updateComment(id: string | number, movie: SavedMovie) {
+  updateComment(id: string | number, movie: Movie) {
     const Comment = this.textarea?.nativeElement.value;
     return this.apiCallService
       .updateComment(id, { ...movie, Comment })

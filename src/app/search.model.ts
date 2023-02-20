@@ -6,17 +6,6 @@ export interface Movie {
   Countries: string[];
   Poster: string;
   CountryInfo: Country[];
-  Currencies: string[];
-}
-
-export interface SavedMovie {
-  Country: string;
-  Title: string;
-  Released: number;
-  Actors: string;
-  Countries: string[];
-  Poster: string;
-  CountryInfo: Country[];
   Comment: string;
   id: string | number;
 }
