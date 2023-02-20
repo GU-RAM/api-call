@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { ApiCallsService } from '../api-calls.service';
-import { Currency, Movie, SavedMovie } from '../search.model';
+import { Currency, SavedMovie } from '../search.model';
 
 @Component({
   selector: 'app-rate-comment-movie',
@@ -13,10 +12,7 @@ export class RateCommentMovieComponent {
 
   comment: string = '';
 
-  constructor(
-    private apiCallsService: ApiCallsService, // private toastr: ToastrService
-    private toastr: ToastrService
-  ) {
+  constructor(private apiCallsService: ApiCallsService) {
     this.favoriteMovieInfo = this.apiCallsService.favoriteMovie;
   }
 
@@ -24,10 +20,10 @@ export class RateCommentMovieComponent {
     return Object.keys(currencies)[0];
   }
 
-  addFavoriteMovie(movie: SavedMovie, comment: string): any {
-    return this.apiCallsService
+  addFavoriteMovie(movie: SavedMovie, comment: string) {
+    this.apiCallsService
       .saveMovie({ ...movie, Comment: comment })
-      .subscribe(() => this.toastr.success('Movie has been added'));
+      .subscribe(() => console.log());
   }
 
   ngOnInit() {

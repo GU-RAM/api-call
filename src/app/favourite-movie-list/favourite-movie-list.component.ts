@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
 import { SavedMovie } from '../search.model';
 
@@ -8,13 +9,11 @@ import { SavedMovie } from '../search.model';
   styleUrls: ['./favourite-movie-list.component.scss'],
 })
 export class FavouriteMovieListComponent {
-  constructor(public apiCallService: ApiCallsService) {
-    this.apiCallService.favoriteMoviesList$;
-  }
+  movieList$: Observable<SavedMovie[]> | undefined;
+
+  constructor(public apiCallService: ApiCallsService) {}
 
   ngOnInit() {
-    this.apiCallService.getSavedMovie().subscribe((movies: SavedMovie[]) => {
-      this.apiCallService.favoriteMoviesList$ = movies;
-    });
+    this.movieList$ = this.apiCallService.getSavedMovie();
   }
 }

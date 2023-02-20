@@ -29,10 +29,7 @@ export class ThreeInputsSearchComponent {
 
   moviesSearchResult$: Observable<any> | undefined;
 
-  constructor(
-    private apiCallsService: ApiCallsService,
-    private toastr: ToastrService
-  ) {}
+  constructor(private apiCallsService: ApiCallsService) {}
 
   getMovies(movieName: string) {
     return this.apiCallsService.searchMovies(movieName).pipe();

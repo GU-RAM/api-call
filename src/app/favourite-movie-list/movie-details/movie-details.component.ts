@@ -12,8 +12,8 @@ import { Movie, SavedMovie } from 'src/app/search.model';
 })
 export class MovieDetailsComponent {
   @ViewChild('textarea') textarea: ElementRef | undefined;
-  selectedMovie: any;
-  selectedMovieId: string | undefined;
+  selectedMovie: SavedMovie[] | undefined;
+  selectedMovieId: string | number | undefined;
 
   constructor(
     private apiCallService: ApiCallsService,
@@ -21,7 +21,7 @@ export class MovieDetailsComponent {
     private toastr: ToastrService
   ) {}
 
-  deleteMovie(id: string) {
+  deleteMovie(id: string | number) {
     return this.apiCallService.deleteSavedMovie(id).subscribe(() => {
       this.toastr.success('deleted succesfully'),
         (this.apiCallService.favoriteMoviesList$ =
@@ -29,7 +29,7 @@ export class MovieDetailsComponent {
     });
   }
 
-  editComment(id: string) {
+  editComment(id: string | number) {
     this.selectedMovieId = id;
   }
 
@@ -48,7 +48,7 @@ export class MovieDetailsComponent {
     }
   }
 
-  updateComment(id: string, movie: SavedMovie) {
+  updateComment(id: string | number, movie: SavedMovie) {
     const Comment = this.textarea?.nativeElement.value;
     return this.apiCallService
       .updateComment(id, { ...movie, Comment })

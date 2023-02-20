@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { mergeMap, Observable, of, switchMap } from 'rxjs';
+import { mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Country, Movie, RunTime, SavedMovie } from './search.model';
+import { Country, Movie, SavedMovie } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { API_URLS } from './token';
 })
 export class ApiCallsService {
   favoriteMovie: SavedMovie | undefined;
-  favoriteMoviesList$: any = [];
+  favoriteMoviesList$: Observable<SavedMovie[]> | undefined;
 
   constructor(
     private http: HttpClient,
@@ -53,11 +53,11 @@ export class ApiCallsService {
     return this.http.get<SavedMovie[]>(`${environment.jsonServerBase}/movies`);
   }
 
-  deleteSavedMovie(id: string) {
+  deleteSavedMovie(id: string | number) {
     return this.http.delete(`${environment.jsonServerBase}/movies/${id}`);
   }
 
-  updateComment(id: string, movie: SavedMovie) {
+  updateComment(id: string | number, movie: SavedMovie) {
     return this.http.patch(`${environment.jsonServerBase}/movies/${id}`, movie);
   }
 }

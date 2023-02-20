@@ -2,7 +2,7 @@
   <ul class="movie-list">
     <li
       class="movie-item"
-      *ngFor="let movie of apiCallService.favoriteMoviesList$"
+      *ngFor="let movie of movieList$ | async"
       [routerLink]="'/favourite-movie-list/' + movie.id"
       routerLinkActive="active"
     >
