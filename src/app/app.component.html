@@ -11,7 +11,11 @@
   <li routerLink="/population" routerLinkActive="active">
     Population and Total Minutes
   </li>
-  <li routerLink="/favourite-movie-list" routerLinkActive="active">
+  <li
+    routerLink="/favourite-movie-list"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
     Favourite Movie List
   </li>
 </ul>

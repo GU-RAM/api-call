@@ -1,5 +1,5 @@
 export interface Movie {
-  Country: any;
+  Country: string;
   Title: string;
   Released: number;
   Actors: string;
@@ -9,8 +9,8 @@ export interface Movie {
   Currencies: string[];
 }
 
-export interface SaveMovie {
-  Country: any;
+export interface SavedMovie {
+  Country: string;
   Title: string;
   Released: number;
   Actors: string;
@@ -18,6 +18,7 @@ export interface SaveMovie {
   Poster: string;
   CountryInfo: Country[];
   Comment: string;
+  id: string | number;
 }
 
 export interface Country {

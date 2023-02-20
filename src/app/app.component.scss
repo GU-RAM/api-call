@@ -19,12 +19,12 @@ li {
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
-    color: coral;
+    color: rgb(236, 152, 122);
   }
 }
 
 li.active {
-  color: coral;
+  color: rgb(236, 152, 122);
 }
 
 li:after {
@@ -32,7 +32,7 @@ li:after {
   display: block;
   width: 0;
   height: 2px;
-  background: yellow;
+  background: rgb(226, 111, 69);
   transition: width 0.3s;
 }
 

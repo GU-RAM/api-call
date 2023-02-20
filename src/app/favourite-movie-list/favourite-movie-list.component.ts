@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
 import { ApiCallsService } from '../api-calls.service';
-import { Movie } from '../search.model';
+import { SavedMovie } from '../search.model';
 
 @Component({
   selector: 'app-favourite-movie-list',
   templateUrl: './favourite-movie-list.component.html',
   styleUrls: ['./favourite-movie-list.component.scss'],
 })
-export class FavouriteMovieListComponent {}
+export class FavouriteMovieListComponent {
+  constructor(public apiCallService: ApiCallsService) {
+    this.apiCallService.favoriteMoviesList$;
+  }
+
+  ngOnInit() {
+    this.apiCallService.getSavedMovie().subscribe((movies: SavedMovie[]) => {
+      this.apiCallService.favoriteMoviesList$ = movies;
+    });
+  }
+}

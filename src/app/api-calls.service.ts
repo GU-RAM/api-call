@@ -2,14 +2,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { mergeMap, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Country, Movie, RunTime, SaveMovie } from './search.model';
+import { Country, Movie, RunTime, SavedMovie } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiCallsService {
-  favoriteMovie: Movie | undefined;
+  favoriteMovie: SavedMovie | undefined;
+  favoriteMoviesList$: any = [];
 
   constructor(
     private http: HttpClient,
@@ -44,7 +45,19 @@ export class ApiCallsService {
     );
   }
 
-  saveMovie(savedMovie: SaveMovie) {
+  saveMovie(savedMovie: SavedMovie) {
     return this.http.post(`${environment.jsonServerBase}/movies`, savedMovie);
+  }
+
+  getSavedMovie(): Observable<any> {
+    return this.http.get(`${environment.jsonServerBase}/movies`);
+  }
+
+  deleteSavedMovie(id: string) {
+    return this.http.delete(`${environment.jsonServerBase}/movies/${id}`);
+  }
+
+  updateComment(id: string, movie: SavedMovie) {
+    return this.http.patch(`${environment.jsonServerBase}/movies/${id}`, movie);
   }
 }

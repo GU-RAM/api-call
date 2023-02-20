@@ -15,6 +15,7 @@ import { ThreeInputsSearchComponent } from './three-inputs-search/three-inputs-s
 import { AppRoutingModule } from './app.routing.module';
 import { FavouriteMovieListComponent } from './favourite-movie-list/favourite-movie-list.component';
 import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-movie.component';
+import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-mov
     ThreeInputsSearchComponent,
     FavouriteMovieListComponent,
     RateCommentMovieComponent,
+    MovieDetailsComponent,
   ],
   imports: [
     BrowserModule,

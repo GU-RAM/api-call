@@ -1,4 +1,18 @@
-<p>favourite-movie-list works!</p>
-<p>favourite-movie-list works!</p>
-<p>favourite-movie-list works!</p>
-<p>favourite-movie-list works!</p>
+<div class="favorite-movies-list">
+  <ul class="movie-list">
+    <li
+      class="movie-item"
+      *ngFor="let movie of apiCallService.favoriteMoviesList$"
+      [routerLink]="'/favourite-movie-list/' + movie.id"
+      routerLinkActive="active"
+    >
+      <div class="movie-info">
+        <div class="title">Title: {{ movie.Title }}</div>
+        <div class="release-date">Release Date: {{ movie.Released }}</div>
+      </div>
+      <div class="poster">
+        <img [src]="movie.Poster" alt="" />
+      </div>
+    </li>
+  </ul>
+</div>

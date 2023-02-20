@@ -38,12 +38,14 @@
         </ul>
         <button
           class="add-to-favourite"
-          routerLink="/rate-comment-add"
-          routerLinkActive="active"
-          (click)="shareFavoriteMovie(movieInfo[0], movieInfo[1])"
+          (click)="shareFavoriteMovie(movieInfo[0], movieInfo[1], movieInfo[2])"
+          *ngIf="!addedMovieButton"
         >
           Add to my fovarourite
         </button>
+        <div class="movie-already-added" *ngIf="addedMovieButton">
+          This movie is already added to favorite list
+        </div>
       </div>
     </div>
   </ng-container>

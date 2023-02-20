@@ -17,7 +17,13 @@ import {
 } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
 import { ToastrService } from 'ngx-toastr';
-import { Country, Movie, Currency } from '../search.model';
+import {
+  Country,
+  Movie,
+  Currency,
+  SavedMovie as SavedMovie,
+} from '../search.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-search',
@@ -28,9 +34,11 @@ export class MovieSearchComponent {
   searchMovie = new FormControl();
 
   movieSearchResult$: Observable<any> | undefined;
+  addedMovieButton: Boolean = false;
 
   constructor(
     private apiCallsService: ApiCallsService,
+    private router: Router,
     private toastr: ToastrService
   ) {}
 
@@ -68,11 +76,20 @@ export class MovieSearchComponent {
     return Object.keys(currencies)[0];
   }
 
-  shareFavoriteMovie(movieInfo: Movie, countryInfo: any): any {
-    return (this.apiCallsService.favoriteMovie = {
-      ...movieInfo,
-      CountryInfo: countryInfo,
-    });
+  shareFavoriteMovie(
+    movieInfo: SavedMovie,
+    countryInfo: any,
+    favoriteMovies: SavedMovie[]
+  ) {
+    if (favoriteMovies.every((movie) => movie.Title !== movieInfo?.Title)) {
+      this.apiCallsService.favoriteMovie = {
+        ...movieInfo,
+        CountryInfo: countryInfo,
+      };
+      this.router.navigate(['/rate-comment-add']);
+    } else {
+      this.addedMovieButton = true;
+    }
   }
 
   ngOnInit() {
@@ -82,9 +99,8 @@ export class MovieSearchComponent {
       switchMap((movieName) => {
         if (movieName.length > 3 && movieName.length < 100) {
           return this.apiCallsService.searchMovies(movieName).pipe(
-            tap(console.log),
-            map((info: any) => {
-              return this.getOnMovieInfo(info);
+            map((info: Movie) => {
+              return (this.addedMovieButton = false), this.getOnMovieInfo(info);
             })
           );
         }
@@ -96,7 +112,10 @@ export class MovieSearchComponent {
             this.apiCallsService.searchCurrencyFlagName(country)
         );
 
-        return forkJoin([of(movie), forkJoin(countries$)]);
+        const favoriteMovies$: Observable<SavedMovie> =
+          this.apiCallsService.getSavedMovie();
+
+        return forkJoin([of(movie), forkJoin(countries$), favoriteMovies$]);
       }),
       tap(console.log),
       catchError((error: HttpErrorResponse) => {

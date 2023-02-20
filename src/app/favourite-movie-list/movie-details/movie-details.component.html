@@ -1,0 +1,46 @@
+<ng-container *ngIf="selectedMovie as movie">
+  <div class="selected-movie-wrapper" *ngFor="let movie of movie">
+    <div class="selected-movie">
+      <div class="poster">
+        <img [src]="movie.Poster" alt="poster" />
+      </div>
+
+      <div class="movie-info">
+        <div>Title: {{ movie.Title }}</div>
+        <div>Actors: {{ movie.Actors }}</div>
+        <div>Release Date: {{ movie.Released }}</div>
+        <div>Actors: {{ movie.Actors }}</div>
+        <div>
+          Countries Involved:
+          <span *ngFor="let countryInfo of movie.CountryInfo"
+            ><img [src]="countryInfo.flags" alt="flag"
+          /></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-comment">
+      <p *ngIf="!selectedMovieId">{{ movie.Comment }}</p>
+      <textarea type="text" *ngIf="selectedMovieId" #textarea>{{
+        movie.Comment
+      }}</textarea>
+    </div>
+    <div class="buttons-wrapper" *ngIf="selectedMovieId">
+      <button class="update-button" (click)="updateComment(movie.id, movie)">
+        UPDATE
+      </button>
+      <button class="cancel-button" (click)="cancelEdit()">CANCEL</button>
+    </div>
+    <div class="buttons-wrapper" *ngIf="!selectedMovieId">
+      <button class="edit-button" (click)="editComment(movie.id)">EDIT</button>
+      <button
+        class="delete-button"
+        (click)="deleteMovie(movie.id)"
+        routerLink="/favourite-movie-list"
+        routerLinkActive="active"
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+</ng-container>
