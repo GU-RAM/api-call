@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  apiBaseMovies: 'http://www.omdbapi.com/?apikey=c69771f5&',
+  apiBaseMovies: 'https://www.omdbapi.com/?apikey=c69771f5&',
   apiBaseCountries: 'https://restcountries.com/v3.1',
   apiBaseFlags: 'https://flagpedia.net',
-  jsonServerBase: 'http://localhost:3000',
+  jsonServerBase: 'https://localhost:3000',
 };
