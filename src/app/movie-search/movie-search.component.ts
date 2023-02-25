@@ -105,7 +105,7 @@ export class MovieSearchComponent {
       concatMap((movie) => {
         const countries$: Observable<Country>[] = movie.Countries.map(
           (country: string) =>
-            this.apiCallsService.searchCurrencyFlagName(country)
+            this.apiCallsService.searchPopulationCurrencyFlagName(country)
         );
 
         const favoriteMovies$: Observable<Movie[]> =

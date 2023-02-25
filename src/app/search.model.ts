@@ -50,11 +50,11 @@ export enum Genres {
 export interface addMovie {
   name: FormControl<string | null>;
   countries: FormArray<FormControl<null>>;
-  // premierPlace: FormControl<string | null>;
-  // releaseDate: FormControl<string | null>;
+  premierPlace?: FormControl<string | null>;
+  releaseDate: FormControl<string | null>;
   // genre: FormControl<Genres | null>;
-  // movieType?: FormControl<MovieType | null>;
-  // numberOfSeries?: FormControl<MovieType.TVShow | null>;
-  // minutes: FormControl<number | null>;
+  movieType?: FormControl<MovieType | null>;
+  numberOfSeries?: FormControl<MovieType.TVShow | null>;
+  minutes: FormControl<number | null>;
   // rating: FormControl<string | null>;
 }

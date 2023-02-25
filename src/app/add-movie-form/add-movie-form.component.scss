@@ -1,11 +1,8 @@
-form {
-  color: #fff;
-}
-
 .submitted {
   input[type="text"],
   input[type="number"],
-  input[type="email"],
+  input[type="date"],
+  select,
   textarea {
     outline: none;
     border: 1px solid grey;
@@ -17,5 +14,87 @@ form {
     &.ng-valid {
       border: 2px solid rgb(95, 201, 95);
     }
+  }
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  margin: 20px;
+}
+.add-movie-form-container {
+  color: #fff;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  background-color: #333333;
+  margin: 0 auto;
+  padding: 20px;
+
+  form {
+    margin-top: 20px;
+    & > div {
+      margin-bottom: 20px;
+      border-bottom: 2px solid salmon;
+      padding: 20px;
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  input,
+  select {
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0062cc;
+    }
+
+    &:active {
+      background-color: #005cbf;
+    }
+
+    &:disabled {
+      background-color: #ddd;
+      color: #666;
+      cursor: not-allowed;
+    }
+  }
+
+  .error {
+    color: rgb(231, 46, 46);
+    font-size: 13px;
+  }
+
+  .movie-type-input {
+    margin-bottom: 20px;
   }
 }

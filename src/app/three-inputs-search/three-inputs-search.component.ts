@@ -82,11 +82,13 @@ export class ThreeInputsSearchComponent {
         ];
 
         const populations = checkedCountries.map((country) => {
-          return this.apiCallsService.searchCurrencyFlagName(country).pipe(
-            map((countryInfo) => {
-              return countryInfo.population;
-            })
-          );
+          return this.apiCallsService
+            .searchPopulationCurrencyFlagName(country)
+            .pipe(
+              map((countryInfo) => {
+                return countryInfo.population;
+              })
+            );
         });
 
         return forkJoin(populations).pipe(

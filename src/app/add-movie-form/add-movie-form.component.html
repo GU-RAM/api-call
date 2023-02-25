@@ -1,72 +1,211 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="handleSubmission()"
-  [class.submitted]="isSubmitted"
->
-  <div>
-    <div>Movie Name:</div>
-    <div>
-      <input type="text" formControlName="name" />
-    </div>
-    <div
-      *ngIf="
-        form.controls['name'] &&
-        form.controls['name'].errors &&
-        form.controls['name'].dirty &&
-        isSubmitted
-      "
+<div>
+  <h1>Ceate a movie</h1>
+  <div class="add-movie-form-container">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="handleSubmission()"
+      [class.submitted]="isSubmitted"
     >
-      <div *ngIf="form.controls['name'].errors['required']">
-        Name is required
+      <div class="card-1">
+        <div>Movie Name:</div>
+        <div>
+          <input type="text" formControlName="name" />
+        </div>
+        <div
+          *ngIf="
+            form.controls['name'] && form.controls['name'].errors && isSubmitted
+          "
+        >
+          <div *ngIf="form.controls['name'].errors['required']" class="error">
+            Name is required
+          </div>
+          <div *ngIf="form.controls['name'].errors['minlength']" class="error">
+            Name min length is 3
+          </div>
+          <div *ngIf="form.controls['name'].errors['maxlength']" class="error">
+            Name max length is 10
+          </div>
+          <div
+            *ngIf="form.controls['name'].errors['movieExists']"
+            class="error"
+          >
+            {{ form.controls["name"].value }} has already been created
+          </div>
+        </div>
+        <div
+          *ngIf="
+            form.controls['name'] && form.controls['name'].errors && isSubmitted
+          "
+        ></div>
       </div>
-      <div *ngIf="form.controls['name'].errors['minlength']">
-        Name min length is 3
-      </div>
-      <div *ngIf="form.controls['name'].errors['maxlength']">
-        Name max length is 10
-      </div>
-      <div *ngIf="form.controls['name'].errors['movieExists']">
-        {{ form.controls["name"].value }} has already been created
-      </div>
-    </div>
-  </div>
 
-  <div>
-    <h2>Countries</h2>
-    <div formArrayName="countries">
-      <div
-        *ngFor="
-          let countryControl of form.controls.countries?.controls;
-          let i = index
-        "
-      >
-        <select name="" id="" [formControl]="countryControl">
-          <option [value]="null" hidden>Select Country</option>
-          <ng-container *ngIf="">
-            <option
-              *ngFor="
-                let country of countries
-                  | allCountries : form.value.countries : countryControl.value
-                  | async
-              "
-              [value]="country"
+      <div class="card-2">
+        <div>Countries</div>
+        <div formArrayName="countries">
+          <div
+            *ngFor="
+              let countryControl of form.controls.countries?.controls;
+              let i = index
+            "
+          >
+            <select
+              name=""
+              id=""
+              [formControl]="countryControl"
+              (change)="enablePremierPlace()"
             >
-              {{ country }}
-            </option>
-          </ng-container>
-        </select>
-        <button (click)="removeHobbyControl(i)" [disabled]="removeBtnDisabled">
-          Remove
-        </button>
+              <option [value]="null" hidden>Select Country</option>
+              <option
+                *ngFor="
+                  let country of countries
+                    | allCountries : form.value.countries : countryControl.value
+                    | async
+                "
+                [value]="country"
+              >
+                {{ country }}
+              </option>
+            </select>
+
+            <button
+              (click)="removeCountryControl(i)"
+              (click)="enablePremierPlace()"
+              [disabled]="removeBtnDisabled"
+            >
+              Remove
+            </button>
+            <div
+              *ngIf="
+                form.controls['countries'] &&
+                form.controls['countries'].controls &&
+                form.controls['countries'].controls &&
+                form.controls['countries'].controls[i] &&
+                form.controls['countries'].controls[i].errors &&
+                isSubmitted
+              "
+            >
+              <div
+                *ngIf="form.controls['countries'].controls[i].errors"
+                class="error"
+              >
+                Choose a country
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            (click)="addCountrySelection()"
+            [disabled]="addCountriesBtnDisable"
+          >
+            Add Country Selection
+          </button>
+        </div>
       </div>
-      <button
-        type="button"
-        (click)="addCountrySelection()"
-        [disabled]="addCountriesBtnDisable"
-      >
-        Add Country Selection
-      </button>
-    </div>
+      <div class="card-3">
+        <div>Premier Place:</div>
+        <div>
+          <input type="text" formControlName="premierPlace" />
+        </div>
+        <div
+          *ngIf="
+            form.controls['premierPlace'] &&
+            form.controls['premierPlace'].errors &&
+            form.controls['premierPlace'].dirty &&
+            isSubmitted
+          "
+        >
+          <div *ngIf="form.controls['premierPlace'].errors['required']">
+            Name is required
+          </div>
+          <div *ngIf="form.controls['premierPlace'].errors['minlength']">
+            Name min length is 3
+          </div>
+          <div *ngIf="form.controls['premierPlace'].errors['maxlength']">
+            Name max length is 10
+          </div>
+          <div *ngIf="form.controls['premierPlace'].errors['movieExists']">
+            {{ form.controls["premierPlace"].value }} has already been created
+          </div>
+        </div>
+      </div>
+      <div class="card-4">
+        <div>Release Date:</div>
+        <div>
+          <input
+            type="date"
+            formControlName="releaseDate"
+            [min]="getCurrentDate()"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['releaseDate'] &&
+            form.controls['releaseDate'].errors &&
+            isSubmitted
+          "
+        >
+          <div
+            *ngIf="form.controls['releaseDate'].errors['required']"
+            class="error"
+          >
+            Choose a release date
+          </div>
+        </div>
+      </div>
+      <div class="card-5">
+        <div>
+          <div>Movie type:</div>
+          <div class="movie-type-input">
+            <input
+              type="radio"
+              id="movie"
+              name="movieType"
+              [value]="movieType.Movie"
+              formControlName="movieType"
+            />
+            <label for="movie">Movie</label><br />
+            <input
+              type="radio"
+              id="tv-show"
+              name="movieType"
+              [value]="movieType.TVShow"
+              formControlName="movieType"
+            />
+            <label for="tv-show">Tv Show</label>
+          </div>
+          <div
+            *ngIf="
+              form.controls['movieType'] &&
+              form.controls['movieType'].value &&
+              form.controls['movieType'].value === movieType.TVShow
+            "
+          >
+            <div>Number tv show of series:</div>
+            <div>
+              <input type="number" formControlName="numberOfSeries" min="1" />
+            </div>
+          </div>
+          <div
+            *ngIf="
+              form.controls['movieType'] &&
+              form.controls['movieType'].value &&
+              form.controls['movieType'].value === movieType.Movie
+            "
+          >
+            <div>Total length of movie in minutes (min - 60, max: 190):</div>
+            <div>
+              <input
+                type="number"
+                formControlName="minutes"
+                min="60"
+                max="190"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit">SUBMIT</button>
+    </form>
   </div>
-  <button type="submit">SUBMIT</button>
-</form>
+</div>

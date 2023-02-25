@@ -25,7 +25,7 @@ export class ApiCallsService {
     });
   }
 
-  searchCurrencyFlagName(country: string): Observable<Country> {
+  searchPopulationCurrencyFlagName(country: string): Observable<Country> {
     const countryData = this.http.get<Country>(
       `${this.apiUrls['apiBaseCountries']}/name/${country.trim()}?fullText=true`
     );

@@ -18,6 +18,7 @@ import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-mov
 import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movie-details.component';
 import { AddMovieFormComponent } from './add-movie-form/add-movie-form.component';
 import { CountriesPipe } from './countries.pipe';
+import { MyMoviesComponent } from './my-movies/my-movies.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CountriesPipe } from './countries.pipe';
     MovieDetailsComponent,
     AddMovieFormComponent,
     CountriesPipe,
+    MyMoviesComponent,
   ],
   imports: [
     BrowserModule,
