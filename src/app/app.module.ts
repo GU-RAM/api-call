@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { FavouriteMovieListComponent } from './favourite-movie-list/favourite-movie-list.component';
 import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-movie.component';
 import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movie-details.component';
+import { AddMovieFormComponent } from './add-movie-form/add-movie-form.component';
+import { CountriesPipe } from './countries.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movi
     FavouriteMovieListComponent,
     RateCommentMovieComponent,
     MovieDetailsComponent,
+    AddMovieFormComponent,
+    CountriesPipe,
   ],
   imports: [
     BrowserModule,

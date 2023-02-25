@@ -1,0 +1,72 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="handleSubmission()"
+  [class.submitted]="isSubmitted"
+>
+  <div>
+    <div>Movie Name:</div>
+    <div>
+      <input type="text" formControlName="name" />
+    </div>
+    <div
+      *ngIf="
+        form.controls['name'] &&
+        form.controls['name'].errors &&
+        form.controls['name'].dirty &&
+        isSubmitted
+      "
+    >
+      <div *ngIf="form.controls['name'].errors['required']">
+        Name is required
+      </div>
+      <div *ngIf="form.controls['name'].errors['minlength']">
+        Name min length is 3
+      </div>
+      <div *ngIf="form.controls['name'].errors['maxlength']">
+        Name max length is 10
+      </div>
+      <div *ngIf="form.controls['name'].errors['movieExists']">
+        {{ form.controls["name"].value }} has already been created
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Countries</h2>
+    <div formArrayName="countries">
+      <div
+        *ngFor="
+          let countryControl of form.controls.countries?.controls;
+          let i = index
+        "
+      >
+        <select name="" id="" [formControl]="countryControl">
+          <option [value]="null" hidden>Select Country</option>
+          <ng-container *ngIf="">
+            <option
+              *ngFor="
+                let country of countries
+                  | allCountries : form.value.countries : countryControl.value
+                  | async
+              "
+              [value]="country"
+            >
+              {{ country }}
+            </option>
+          </ng-container>
+        </select>
+        <button (click)="removeHobbyControl(i)" [disabled]="removeBtnDisabled">
+          Remove
+        </button>
+      </div>
+      <button
+        type="button"
+        (click)="addCountrySelection()"
+        [disabled]="addCountriesBtnDisable"
+      >
+        Add Country Selection
+      </button>
+    </div>
+  </div>
+  <button type="submit">SUBMIT</button>
+</form>

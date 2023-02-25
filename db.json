@@ -4,10 +4,7 @@
       "Title": "Dune",
       "Released": "22 Oct 2021",
       "Actors": "Timothée, Rebecca, Zendaya",
-      "Countries": [
-        "Canada",
-        " United States"
-      ],
+      "Countries": ["Canada", " United States"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -40,9 +37,7 @@
       "Title": "Office",
       "Released": "27 Aug 2015",
       "Actors": "Ko, Sung-Woo, Kim",
-      "Countries": [
-        "South Korea"
-      ],
+      "Countries": ["South Korea"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BZTA0NDM0ZWMtZDI0Zi00OWI5LWJlOTYtZTk5ZjAzYzIyNjQ3XkEyXkFqcGdeQXVyNDE2NjE1Njc@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -61,60 +56,10 @@
       "id": 3
     },
     {
-      "Title": "Brooklyn",
-      "Released": "25 Nov 2015",
-      "Actors": "Saoirse, Emory, Domhnall",
-      "Countries": [
-        "United Kingdom",
-        " Canada",
-        " Ireland"
-      ],
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMzE4MDk5NzEyOV5BMl5BanBnXkFtZTgwNDM4NDA3NjE@._V1_SX300.jpg",
-      "CountryInfo": [
-        {
-          "name": "United Kingdom",
-          "currencies": {
-            "GBP": {
-              "name": "British pound",
-              "symbol": "£"
-            }
-          },
-          "flags": "https://flagcdn.com/w320/gb.png",
-          "population": 67215293
-        },
-        {
-          "name": "Canada",
-          "currencies": {
-            "CAD": {
-              "name": "Canadian dollar",
-              "symbol": "$"
-            }
-          },
-          "flags": "https://flagcdn.com/w320/ca.png",
-          "population": 38005238
-        },
-        {
-          "name": "Ireland",
-          "currencies": {
-            "EUR": {
-              "name": "Euro",
-              "symbol": "€"
-            }
-          },
-          "flags": "https://flagcdn.com/w320/ie.png",
-          "population": 4994724
-        }
-      ],
-      "Comment": "ffffffffbbbssssss",
-      "id": 5
-    },
-    {
       "Title": "Avatar",
       "Released": "18 Dec 2009",
       "Actors": "Sam, Zoe, Sigourney",
-      "Countries": [
-        "United States"
-      ],
+      "Countries": ["United States"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLTg3MzMtYTJmNjg3Nzk5MzRiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -136,9 +81,7 @@
       "Title": "Interstelar",
       "Released": "02 Nov 2014",
       "Actors": "Vladislav, Sergey, Viktor",
-      "Countries": [
-        "Russia"
-      ],
+      "Countries": ["Russia"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BZGVlYjY2MTItZjdkMC00Mjg0LTljNzItMjI0ZDBkMWFjYTExXkEyXkFqcGdeQXVyNDcwNDE0Nzk@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -160,9 +103,7 @@
       "Title": "The Office",
       "Released": "24 Mar 2005",
       "Actors": "Steve, Jenna, John",
-      "Countries": [
-        "United States"
-      ],
+      "Countries": ["United States"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -184,9 +125,7 @@
       "Title": "Naruto",
       "Released": "10 Sep 2005",
       "Actors": "Junko, Maile, Kate",
-      "Countries": [
-        "Japan"
-      ],
+      "Countries": ["Japan"],
       "Poster": "https://m.media-amazon.com/images/M/MV5BMDI3ZDY4MDgtN2U2OS00Y2YzLWJmZmYtZWMzOTM3YWFjYmUyXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg",
       "CountryInfo": [
         {
@@ -203,6 +142,51 @@
       ],
       "Comment": "ss",
       "id": 9
+    },
+    {
+      "Title": "Superman",
+      "Released": "15 Dec 1978",
+      "Actors": "Christopher, Margot, Gene",
+      "Countries": ["United States", " United Kingdom", " Canada"],
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzA0YWMwMTUtMTVhNC00NjRkLWE2ZTgtOWEzNjJhYzNiMTlkXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_SX300.jpg",
+      "CountryInfo": [
+        {
+          "name": "United States",
+          "currencies": {
+            "USD": {
+              "name": "United States dollar",
+              "symbol": "$"
+            }
+          },
+          "flags": "https://flagcdn.com/w320/us.png",
+          "population": 329484123
+        },
+        {
+          "name": "United Kingdom",
+          "currencies": {
+            "GBP": {
+              "name": "British pound",
+              "symbol": "£"
+            }
+          },
+          "flags": "https://flagcdn.com/w320/gb.png",
+          "population": 67215293
+        },
+        {
+          "name": "Canada",
+          "currencies": {
+            "CAD": {
+              "name": "Canadian dollar",
+              "symbol": "$"
+            }
+          },
+          "flags": "https://flagcdn.com/w320/ca.png",
+          "population": 38005238
+        }
+      ],
+      "Comment": "sngdssfdnf",
+      "id": 10
     }
-  ]
+  ],
+  "myMovies": []
 }

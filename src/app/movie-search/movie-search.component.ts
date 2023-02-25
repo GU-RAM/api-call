@@ -11,7 +11,6 @@ import {
   Observable,
   of,
   switchMap,
-  tap,
 } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
 import { ToastrService } from 'ngx-toastr';
@@ -116,7 +115,6 @@ export class MovieSearchComponent {
           ? forkJoin([of(movie), forkJoin(countries$), favoriteMovies$])
           : of(movie);
       }),
-      tap(console.log),
       catchError(() => {
         return this.getEmptyResult();
       })

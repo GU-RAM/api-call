@@ -1,3 +1,5 @@
+import { FormArray, FormControl } from '@angular/forms';
+
 export interface Movie {
   Country: string;
   Title: string;
@@ -30,4 +32,29 @@ interface Flags {
 
 export interface RunTime {
   RunTime: string;
+}
+
+export enum MovieType {
+  Movie = 'Movie',
+  TVShow = 'TV-Show',
+}
+
+export enum Genres {
+  Comedy = 'Comedy',
+  Action = 'Action',
+  Thriller = 'Thriller',
+  Drama = 'Drama',
+  Romance = 'Romance',
+}
+
+export interface addMovie {
+  name: FormControl<string | null>;
+  countries: FormArray<FormControl<null>>;
+  // premierPlace: FormControl<string | null>;
+  // releaseDate: FormControl<string | null>;
+  // genre: FormControl<Genres | null>;
+  // movieType?: FormControl<MovieType | null>;
+  // numberOfSeries?: FormControl<MovieType.TVShow | null>;
+  // minutes: FormControl<number | null>;
+  // rating: FormControl<string | null>;
 }

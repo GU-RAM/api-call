@@ -1,0 +1,21 @@
+form {
+  color: #fff;
+}
+
+.submitted {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  textarea {
+    outline: none;
+    border: 1px solid grey;
+
+    &.ng-invalid {
+      border: 3px solid red;
+    }
+
+    &.ng-valid {
+      border: 2px solid rgb(95, 201, 95);
+    }
+  }
+}

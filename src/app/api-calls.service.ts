@@ -26,8 +26,6 @@ export class ApiCallsService {
   }
 
   searchCurrencyFlagName(country: string): Observable<Country> {
-    console.log(country);
-
     const countryData = this.http.get<Country>(
       `${this.apiUrls['apiBaseCountries']}/name/${country.trim()}?fullText=true`
     );
@@ -59,5 +57,16 @@ export class ApiCallsService {
 
   updateComment(id: string | number, movie: Movie) {
     return this.http.patch(`${environment.jsonServerBase}/movies/${id}`, movie);
+  }
+
+  saveMyMovie(saveCreatedMovie: any) {
+    return this.http.post(
+      `${environment.jsonServerBase}/myMovies`,
+      saveCreatedMovie
+    );
+  }
+
+  getAllCountries() {
+    return this.http.get<Country[]>(`${environment.apiBaseAllCountries}`);
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddMovieFormComponent } from './add-movie-form/add-movie-form.component';
 import { FavouriteMovieListComponent } from './favourite-movie-list/favourite-movie-list.component';
 import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movie-details.component';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: MovieSearchComponent,
+  },
+  {
+    path: 'create-your-movie',
+    component: AddMovieFormComponent,
   },
   {
     path: 'rate-comment-add',

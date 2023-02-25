@@ -26,7 +26,5 @@ export class RateCommentMovieComponent {
       .subscribe(() => console.log());
   }
 
-  ngOnInit() {
-    console.log(this.favoriteMovieInfo);
-  }
+  ngOnInit() {}
 }

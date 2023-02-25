@@ -1,4 +1,9 @@
 <div class="movi-search-container">
+  <div>
+    <button routerLink="/create-your-movie" routerLinkActive="active">
+      Create Your Movie
+    </button>
+  </div>
   <h2>SEARCH YOUR MOVIE</h2>
   <input type="text" [formControl]="searchMovie" />
   <ng-container *ngIf="movieSearchResult$ | async as movieInfo">
