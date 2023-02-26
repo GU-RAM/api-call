@@ -1,0 +1,11 @@
+<div class="grid">
+  <div
+    *ngFor="let genre of genres"
+    class="card"
+    [class.selected]="isSelected(genre.label)"
+    (click)="select(genre.label)"
+  >
+    <div>{{ genre.icon }}</div>
+    <div>{{ genre.label }}</div>
+  </div>
+</div>

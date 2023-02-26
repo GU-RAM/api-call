@@ -12,6 +12,7 @@ ul {
 
 li {
   display: inline-block;
+  text-transform: uppercase;
   margin-right: 20px;
   font-size: 18px;
   position: relative;
@@ -42,4 +43,16 @@ li.active:after {
 
 li:hover:after {
   width: 100%;
+}
+
+form {
+  color: aliceblue;
+}
+
+.row {
+  margin: 20px;
+}
+
+h3 {
+  margin-bottom: 10px;
 }

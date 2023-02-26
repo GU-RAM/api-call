@@ -1,0 +1,84 @@
+:host {
+  &.ng-invalid {
+    .label {
+      .rating {
+        color: red;
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  .star {
+    display: inline-block;
+    cursor: pointer;
+
+    span {
+      font-size: 30px;
+      color: rgb(200, 200, 200);
+      transition: scale 0.1s color 0.2s;
+
+      &.active {
+        color: rgb(247, 194, 0);
+      }
+
+      &:hover {
+        transition: scale 0.1s;
+      }
+
+      &.hovered {
+        color: rgb(216, 171, 5);
+
+        &.self {
+          scale: 1.2;
+        }
+      }
+    }
+
+    &.disabled {
+      cursor: default;
+      span {
+        color: rgb(230, 230, 230);
+        &.active {
+          color: rgb(230, 286, 116);
+        }
+      }
+    }
+  }
+
+  .label {
+    font-size: 20px;
+
+    span {
+      margin: 0 5px;
+    }
+  }
+}
+
+button {
+  background-color: #007bff;
+  text-transform: uppercase;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0062cc;
+  }
+
+  &:active {
+    background-color: #005cbf;
+  }
+
+  &:disabled {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
+  }
+}

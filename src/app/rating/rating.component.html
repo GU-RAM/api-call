@@ -1,0 +1,22 @@
+<div class="container">
+  <div>
+    <div
+      class="star"
+      *ngFor="let star of stars; let i = index"
+      (mouseenter)="enter(i)"
+      (mouseleave)="leave()"
+      (click)="select(i)"
+      [class.disabled]="disabled"
+    >
+      <span
+        class="fa fa-solid fa-star"
+        [ngClass]="getStarClass(i)"
+        [class.self]="isHovered(i)"
+      ></span>
+    </div>
+  </div>
+  <div class="label">
+    <span class="rating">{{ rating }} </span> / {{ stars.length }}
+  </div>
+</div>
+<button type="button" (click)="makeDisable()">Disable</button>

@@ -1,1 +1,42 @@
-<p>my-movies works!</p>
+<div class="created-movies-list">
+  <ul class="movie-list">
+    <li class="movie-item" *ngFor="let movie of createdMovieList$ | async">
+      <div class="movie-info">
+        <div class="title">Title: {{ movie.name }}</div>
+        <div class="release-date">Release Date: {{ movie.releaseDate }}</div>
+        <div>Movie Type: {{ movie.movieType }}</div>
+        <div *ngIf="movie.numberOfSeries">
+          Number Of Series: {{ movie.numberOfSeries }}
+        </div>
+        <div *ngIf="movie.minutes">
+          Movie Length: {{ movie.minutes }} minutes
+        </div>
+        <div class="rating">
+          Rating:
+          <div class="stars">
+            <ng-container *ngIf="movie.rating">
+              <div
+                *ngFor="let star of stars; let i = index"
+                [class.star]="movie.rating > i"
+              >
+                <span class="fa fa-solid fa-star"></span>
+              </div>
+            </ng-container>
+          </div>
+          <div class="label">{{ movie.rating }} / {{ stars.length }}</div>
+        </div>
+        <div class="genres">
+          Genres:
+          <ng-container *ngIf="movie.genre !== null">
+            <span
+              *ngFor="let genre of movie.genre; let i = index"
+              class="genre"
+            >
+              {{ genre }}{{ i + 1 < movie.genre.length ? ", " : "" }}
+            </span>
+          </ng-container>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

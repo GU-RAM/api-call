@@ -47,14 +47,31 @@ export enum Genres {
   Romance = 'Romance',
 }
 
-export interface addMovie {
+export interface Genre {
+  icon: string;
+  label: string;
+}
+
+export interface addMyMovieForm {
   name: FormControl<string | null>;
   countries: FormArray<FormControl<null>>;
   premierPlace?: FormControl<string | null>;
   releaseDate: FormControl<string | null>;
-  // genre: FormControl<Genres | null>;
+  genre: FormControl<string[] | null>;
   movieType?: FormControl<MovieType | null>;
   numberOfSeries?: FormControl<MovieType.TVShow | null>;
   minutes: FormControl<number | null>;
-  // rating: FormControl<string | null>;
+  rating: FormControl<number | null>;
+}
+
+export interface addMyMovie {
+  name: string | null;
+  countries: string[] | null[];
+  premierPlace?: string | null;
+  releaseDate: string | null;
+  genre: string[] | null;
+  movieType?: MovieType | null;
+  numberOfSeries?: MovieType.TVShow | null;
+  minutes?: number | null;
+  rating: number | null;
 }

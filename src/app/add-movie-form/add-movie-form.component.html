@@ -1,13 +1,13 @@
-<div>
-  <h1>Ceate a movie</h1>
+<div class="create-movie">
+  <h1>Create a movie</h1>
   <div class="add-movie-form-container">
     <form
       [formGroup]="form"
       (ngSubmit)="handleSubmission()"
       [class.submitted]="isSubmitted"
     >
-      <div class="card-1">
-        <div>Movie Name:</div>
+      <div class="card">
+        <h3>Movie Name:</h3>
         <div>
           <input type="text" formControlName="name" />
         </div>
@@ -39,8 +39,8 @@
         ></div>
       </div>
 
-      <div class="card-2">
-        <div>Countries</div>
+      <div class="card">
+        <h3>Countries</h3>
         <div formArrayName="countries">
           <div
             *ngFor="
@@ -98,12 +98,12 @@
             (click)="addCountrySelection()"
             [disabled]="addCountriesBtnDisable"
           >
-            Add Country Selection
+            Add Selection
           </button>
         </div>
       </div>
-      <div class="card-3">
-        <div>Premier Place:</div>
+      <div class="card">
+        <h3>Premier Place, If Every Country Is Over 50 Million:</h3>
         <div>
           <input type="text" formControlName="premierPlace" />
         </div>
@@ -129,8 +129,8 @@
           </div>
         </div>
       </div>
-      <div class="card-4">
-        <div>Release Date:</div>
+      <div class="card">
+        <h3>Release Date:</h3>
         <div>
           <input
             type="date"
@@ -153,9 +153,9 @@
           </div>
         </div>
       </div>
-      <div class="card-5">
+      <div class="card">
         <div>
-          <div>Movie type:</div>
+          <h3>Movie type:</h3>
           <div class="movie-type-input">
             <input
               type="radio"
@@ -205,7 +205,20 @@
           </div>
         </div>
       </div>
-      <button type="submit">SUBMIT</button>
+
+      <div class="card">
+        <h3>Rating:</h3>
+        <app-rating [maxRating]="10" formControlName="rating"></app-rating>
+      </div>
+      <div class="card">
+        <h3>Genres:</h3>
+        <app-genres [genres]="genres" formControlName="genre"></app-genres>
+      </div>
+
+      <button type="submit" (click)="moveToMyMovies()" class="btn-submit">
+        SUBMIT
+      </button>
     </form>
   </div>
+  <div class="footer"></div>
 </div>

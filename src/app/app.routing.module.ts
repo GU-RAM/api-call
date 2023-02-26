@@ -4,6 +4,7 @@ import { AddMovieFormComponent } from './add-movie-form/add-movie-form.component
 import { FavouriteMovieListComponent } from './favourite-movie-list/favourite-movie-list.component';
 import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movie-details.component';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
+import { MyMoviesComponent } from './my-movies/my-movies.component';
 import { RateCommentMovieComponent } from './rate-comment-movie/rate-comment-movie.component';
 import { ThreeInputsSearchComponent } from './three-inputs-search/three-inputs-search.component';
 
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'favourite-movie-list/:id',
     component: MovieDetailsComponent,
+  },
+  {
+    path: 'my-movies',
+    component: MyMoviesComponent,
   },
 ];
 

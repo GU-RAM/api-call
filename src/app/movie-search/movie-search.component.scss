@@ -93,6 +93,33 @@
       }
     }
   }
+
+  button {
+    background-color: #007bff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0062cc;
+    }
+
+    &:active {
+      background-color: #005cbf;
+    }
+
+    &:disabled {
+      background-color: #ddd;
+      color: #666;
+      cursor: not-allowed;
+    }
+  }
+
   .movie-already-added {
     padding: 10px;
     color: #fff;

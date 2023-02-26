@@ -1,0 +1,86 @@
+.created-movies-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #fff;
+
+  .movie-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .movie-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 350px;
+      height: 350px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      .movie-info {
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        // align-items: center;
+        z-index: 1;
+      }
+
+      .title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+
+      .release-date {
+        margin-bottom: 5px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+
+        .stars {
+          display: flex;
+          div {
+            font-size: 1rem;
+            margin-right: 2px;
+          }
+          .star {
+            color: #ff0;
+          }
+        }
+
+        .label {
+          font-size: 1rem;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+
+      .genres {
+        display: flex;
+        gap: 7px;
+      }
+    }
+  }
+}

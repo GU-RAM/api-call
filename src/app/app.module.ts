@@ -19,6 +19,8 @@ import { MovieDetailsComponent } from './favourite-movie-list/movie-details/movi
 import { AddMovieFormComponent } from './add-movie-form/add-movie-form.component';
 import { CountriesPipe } from './countries.pipe';
 import { MyMoviesComponent } from './my-movies/my-movies.component';
+import { RatingComponent } from './rating/rating.component';
+import { GenresComponent } from './genres/genres.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { MyMoviesComponent } from './my-movies/my-movies.component';
     AddMovieFormComponent,
     CountriesPipe,
     MyMoviesComponent,
+    RatingComponent,
+    GenresComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,6 @@ import { MyMoviesComponent } from './my-movies/my-movies.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
   ],

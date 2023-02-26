@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Country, Movie } from './search.model';
+import { addMyMovie, addMyMovieForm, Country, Movie } from './search.model';
 import { API_URLS } from './token';
 
 @Injectable({
@@ -59,7 +59,8 @@ export class ApiCallsService {
     return this.http.patch(`${environment.jsonServerBase}/movies/${id}`, movie);
   }
 
-  saveMyMovie(saveCreatedMovie: any) {
+  saveMyMovie(saveCreatedMovie: addMyMovie) {
+    console.log('gru');
     return this.http.post(
       `${environment.jsonServerBase}/myMovies`,
       saveCreatedMovie
@@ -68,5 +69,11 @@ export class ApiCallsService {
 
   getAllCountries() {
     return this.http.get<Country[]>(`${environment.apiBaseAllCountries}`);
+  }
+
+  getCreateddMovie(): Observable<addMyMovie[]> {
+    return this.http.get<addMyMovie[]>(
+      `${environment.jsonServerBase}/myMovies`
+    );
   }
 }

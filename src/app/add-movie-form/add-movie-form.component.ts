@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { forkJoin, map, Observable, of, takeUntil, tap } from 'rxjs';
 import { ApiCallsService } from '../api-calls.service';
 import { movieExistsValidator } from '../app.validator';
-import { addMovie, Country, Genres, MovieType } from '../search.model';
+import { addMyMovieForm, Country, Genre, MovieType } from '../search.model';
 
 @Component({
   selector: 'app-add-movie-form',
@@ -11,9 +12,44 @@ import { addMovie, Country, Genres, MovieType } from '../search.model';
   styleUrls: ['./add-movie-form.component.scss'],
 })
 export class AddMovieFormComponent {
-  form: FormGroup<addMovie> = this.buildForm();
   isSubmitted = false;
   movieType = MovieType;
+  movieAddResult: addMyMovieForm | undefined;
+  genres: Genre[] = [
+    {
+      label: 'comedy',
+      icon: '😄',
+    },
+    {
+      label: 'Drama',
+      icon: '🥺',
+    },
+    {
+      label: 'Action',
+      icon: '🎬',
+    },
+    {
+      label: 'Advanture',
+      icon: '🗡️',
+    },
+    {
+      label: 'Horror',
+      icon: '💀',
+    },
+  ];
+  form: FormGroup<addMyMovieForm> = this.buildForm();
+
+  // <i class="fa-regular fa-masks-theater"></i>
+  // <i class="fa-regular fa-face-laugh"></i>
+  // <i class="fa-solid fa-gun"></i>
+  // <i class="fa-regular fa-sword"></i>
+  // <i class="fa-sharp fa-solid fa-skull"></i>
+
+  constructor(
+    private fb: FormBuilder,
+    public apiCallService: ApiCallsService,
+    private router: Router
+  ) {}
 
   get removeBtnDisabled() {
     return this.form.controls.countries.length === 1;
@@ -54,13 +90,8 @@ export class AddMovieFormComponent {
   handleSubmission() {
     this.updateMinutesNumOfSeriesValidation();
     this.isSubmitted = true;
-    console.log(this.form.controls.movieType?.value);
+    console.log(this.form.controls);
   }
-
-  constructor(
-    private fb: FormBuilder,
-    public apiCallService: ApiCallsService
-  ) {}
 
   getCurrentDate(): string {
     const today = new Date();
@@ -71,7 +102,7 @@ export class AddMovieFormComponent {
   }
 
   buildForm() {
-    return this.fb.group<addMovie>({
+    return this.fb.group<addMyMovieForm>({
       name: this.fb.control('', [
         Validators.required,
         Validators.minLength(3),
@@ -86,16 +117,15 @@ export class AddMovieFormComponent {
         disabled: true,
       }),
       releaseDate: this.fb.control('', [Validators.required]),
-      // genre: this.fb.control(Genres.Action),
+      genre: this.fb.control([]),
       movieType: this.fb.control(MovieType.Movie),
-
       numberOfSeries: this.fb.control(null),
       minutes: this.fb.control(null),
+      rating: this.fb.control(0, [Validators.min(1)]),
     });
   }
 
   addCountrySelection() {
-    console.log(this.form.controls);
     if (this.form.controls.countries.length <= 7) {
       this.form.controls.countries.push(
         this.fb.control(null, [Validators.required])
@@ -130,6 +160,25 @@ export class AddMovieFormComponent {
         this.form.controls?.premierPlace?.enable();
       }
     });
+  }
+
+  moveToMyMovies() {
+    if (this.form.status === 'VALID') {
+      this.apiCallService
+        .saveMyMovie({
+          name: this.form.controls['name'].value,
+          countries: this.form.controls['countries'].value,
+          premierPlace: this.form.controls['premierPlace']?.value,
+          releaseDate: this.form.controls['releaseDate'].value,
+          genre: this.form.controls['genre'].value,
+          movieType: this.form.controls['movieType']?.value,
+          numberOfSeries: this.form.controls['numberOfSeries']?.value,
+          minutes: this.form.controls['minutes'].value,
+          rating: this.form.controls['rating'].value,
+        })
+        .subscribe((x) => console.log());
+      this.router.navigate(['/my-movies']);
+    }
   }
 
   ngOnInit() {
