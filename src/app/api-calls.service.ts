@@ -11,17 +11,6 @@ import { API_URLS } from './token';
 export class ApiCallsService {
   favoriteMovie: Movie | undefined;
   favoriteMoviesList$: Observable<Movie[]> | undefined;
-  // allCountries: string[] = this.getAllCountries()
-  //   .pipe(
-  //     map((allCountriesInfo) => {
-  //       const countryNamesArray = allCountriesInfo.map((country) => {
-  //         return country.name.common;
-  //       });
-
-  //       return countryNamesArray;
-  //     })
-  //   )
-  //   .subscribe((countries) => (this.allCountries = countries));
 
   getAllCountries() {
     return this.http.get<Country[]>(`${environment.apiBaseAllCountries}`);

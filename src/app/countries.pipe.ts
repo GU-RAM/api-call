@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { map, Observable } from 'rxjs';
 import { ApiCallsService } from './api-calls.service';
 import { Country } from './search.model';
 
@@ -14,8 +13,11 @@ export class CountriesPipe implements PipeTransform {
     used: (string | null)[] | undefined,
     self: string | null
   ): string[] {
-    if (self) {
-      return arr.filter((x: string) => {
+    if (
+      self ||
+      (used?.length !== null && used?.length !== undefined && used?.length > 1)
+    ) {
+      const countriesFiltered = arr.filter((x: string) => {
         if (x === self) {
           return true;
         }
@@ -26,42 +28,10 @@ export class CountriesPipe implements PipeTransform {
 
         return false;
       });
+
+      return countriesFiltered;
     }
 
     return arr;
   }
 }
-// {
-//   let count = 0;
-//   const gur = arr.filter((x: string) => {
-//     if (x === self) {
-//       return true;
-//     }
-
-//     if (used?.includes(x)) {
-//       console.log(used?.includes(x));
-//       return false;
-//     }
-
-//     // console.log(count++);
-//     return false;
-//   });
-
-//   console.log('sul', used);
-
-//   if (self) {
-//     return arr.filter((x: string) => {
-//       if (x === self) {
-//         return true;
-//       }
-
-//       if (!used?.includes(x)) {
-//         return true;
-//       }
-
-//       return false;
-//     });
-//   }
-
-//   return arr;
-// }

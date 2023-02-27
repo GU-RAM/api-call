@@ -3,27 +3,16 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  Observable,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { ApiCallsService } from './api-calls.service';
 import { addMyMovie, Movie } from './search.model';
 
 class ApiService {
   constructor(private apiCallService: ApiCallsService) {}
-  mar: any;
 
   checkMovieExists(movieName: string): Observable<boolean> {
     return this.apiCallService.getSavedMovie().pipe(
-      map((response) => {
-        this.mar = response;
-        console.log(this.mar);
+      switchMap((response) => {
         let movieExists = response.some(
           (movie: Movie) => movie.Title.toLocaleLowerCase() === movieName
         );
@@ -33,10 +22,6 @@ class ApiService {
         }
 
         return of(movieExists);
-      }),
-      switchMap((movieExists) => {
-        console.log(movieExists);
-        return movieExists;
       })
     );
   }
@@ -62,8 +47,6 @@ export function movieExistsValidator(
     const apiService = new ApiService(apiCallService);
 
     return apiService.checkMovieExists(control.value).pipe(
-      debounceTime(2900),
-      distinctUntilChanged(),
       map((movieExists) => {
         return movieExists ? { movieExists } : null;
       })

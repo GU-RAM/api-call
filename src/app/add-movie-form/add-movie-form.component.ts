@@ -17,7 +17,7 @@ export class AddMovieFormComponent {
   movieAddResult: addMyMovieForm | undefined;
   genres: Genre[] = [
     {
-      label: 'comedy',
+      label: 'Comedy',
       icon: '😄',
     },
     {
@@ -68,8 +68,6 @@ export class AddMovieFormComponent {
     return this.form.controls.countries.length === 7;
   }
 
-  // countries: string[] = [];
-
   updateMinutesNumOfSeriesValidation() {
     const minutesControl = this.form.get('minutes');
     const numberOfSeriesControl = this.form.get('numberOfSeries');
@@ -115,7 +113,7 @@ export class AddMovieFormComponent {
       name: this.fb.control('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.maxLength(100),
       ]),
       countries: this.fb.array(
         [this.fb.control(null, [Validators.required])],
@@ -194,7 +192,5 @@ export class AddMovieFormComponent {
     this.form.controls.name.addAsyncValidators(
       movieExistsValidator(this.apiCallService)
     );
-    console.log(this.countries);
-    console.log(this.form);
   }
 }

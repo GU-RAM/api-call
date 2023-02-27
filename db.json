@@ -207,39 +207,208 @@
   ],
   "myMovies": [
     {
-      "name": "Bazeras Tavgadasavli",
+      "name": "The Language of Love - Javascript",
       "countries": [
-        "Åland Islands"
+        "Portugal"
       ],
       "premierPlace": "",
-      "releaseDate": "2023-03-02",
+      "releaseDate": "2023-03-03",
       "genre": [
-        "Drama",
+        "Romance",
         "Action",
         "Advanture"
       ],
       "movieType": "Movie",
       "numberOfSeries": null,
-      "minutes": 77,
+      "minutes": 120,
       "rating": 8,
-      "id": 1
+      "id": 2
     },
     {
-      "name": "kote ",
+      "name": "Don't Call Me Avto",
       "countries": [
-        "New Caledonia"
+        "Argentina"
       ],
       "premierPlace": "",
-      "releaseDate": "2023-03-01",
+      "releaseDate": "2023-03-11",
+      "genre": [
+        "Comedy"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 60,
+      "rating": 8,
+      "id": 3
+    },
+    {
+      "name": "50 ყლეობა, რომელიც უნდა მოასწრო სანამ ცოცხალი ხარ - ბოზო.",
+      "countries": [
+        "Venezuela"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-11",
+      "genre": [
+        "Comedy"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 90,
+      "rating": 9,
+      "id": 4
+    },
+    {
+      "name": "Chasing Kote",
+      "countries": [
+        "Spain"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-18",
+      "genre": [
+        "Comedy",
+        "Action",
+        "Advanture"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 180,
+      "rating": 9,
+      "id": 5
+    },
+    {
+      "name": "ისინი ჩამოვიდნენ მთიდან 2",
+      "countries": [
+        "South Georgia"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-08",
+      "genre": [
+        "Action",
+        "Advanture"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 100,
+      "rating": 10,
+      "id": 6
+    },
+    {
+      "name": "License Revoked - ტუტუცო",
+      "countries": [
+        "Mexico"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-11",
+      "genre": [
+        "Comedy",
+        "Action"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 69,
+      "rating": 9,
+      "id": 7
+    },
+    {
+      "name": "Kutaisi On My Mind",
+      "countries": [
+        "Antarctica"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-09",
       "genre": [
         "Drama",
-        "comedy"
+        "Advanture"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 110,
+      "rating": 10,
+      "id": 8
+    },
+    {
+      "name": "Night Working - Green Enthusiasts",
+      "countries": [
+        "Jamaica"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-10",
+      "genre": [
+        "Advanture",
+        "Comedy"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 90,
+      "rating": 9,
+      "id": 9
+    },
+    {
+      "name": "Oops, I Broke Your Phone",
+      "countries": [
+        "Czechia"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-10",
+      "genre": [
+        "Action",
+        "Advanture",
+        "Horror"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 130,
+      "rating": 9,
+      "id": 10
+    },
+    {
+      "name": "Fire Me, Baby - Lazyness For Better Future",
+      "countries": [
+        "Albania"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-09",
+      "genre": [
+        "Action",
+        "Drama"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 80,
+      "rating": 10,
+      "id": 12
+    },
+    {
+      "name": "The Suffering Spine",
+      "countries": [
+        "Serbia"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-08",
+      "genre": [
+        "Drama",
+        "Horror"
       ],
       "movieType": "Movie",
       "numberOfSeries": null,
       "minutes": 66,
-      "rating": 5,
-      "id": 2
+      "rating": 9,
+      "id": 13
+    },
+    {
+      "name": "Escape From Suburbia",
+      "countries": [
+        "Tanzania"
+      ],
+      "premierPlace": "",
+      "releaseDate": "2023-03-08",
+      "genre": [
+        "Advanture"
+      ],
+      "movieType": "Movie",
+      "numberOfSeries": null,
+      "minutes": 80,
+      "rating": 9,
+      "id": 14
     }
   ]
 }
