@@ -59,7 +59,6 @@
                 *ngFor="
                   let country of countries
                     | allCountries : form.value.countries : countryControl.value
-                    | async
                 "
                 [value]="country"
               >
@@ -102,6 +101,41 @@
           </button>
         </div>
       </div>
+
+      <!-- <div class="card">
+        <h3>Premier Place:</h3>
+        <div formArrayName="countries">
+          <div *ngFor="let countryControl of form.controls.premierPlace">
+            <select
+              name=""
+              id=""
+              [formControl]="countryControl"
+              (change)="enablePremierPlace()"
+            >
+              <option [value]="null" hidden>Select Country</option>
+              <option
+                *ngFor="
+                  let country of countries
+                    | allCountries : form.value.countries : countryControl.value
+                    | async
+                "
+                [value]="country"
+              >
+                {{ country }}
+              </option>
+            </select>
+
+            <button
+              (click)="removeCountryControl(i)"
+              (click)="enablePremierPlace()"
+              [disabled]="removeBtnDisabled"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div> -->
+
       <div class="card">
         <h3>Premier Place, If Every Country Is Over 50 Million:</h3>
         <div>

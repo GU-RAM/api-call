@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { mergeMap, Observable, of } from 'rxjs';
+import { map, mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { addMyMovie, addMyMovieForm, Country, Movie } from './search.model';
 import { API_URLS } from './token';
@@ -11,6 +11,21 @@ import { API_URLS } from './token';
 export class ApiCallsService {
   favoriteMovie: Movie | undefined;
   favoriteMoviesList$: Observable<Movie[]> | undefined;
+  // allCountries: string[] = this.getAllCountries()
+  //   .pipe(
+  //     map((allCountriesInfo) => {
+  //       const countryNamesArray = allCountriesInfo.map((country) => {
+  //         return country.name.common;
+  //       });
+
+  //       return countryNamesArray;
+  //     })
+  //   )
+  //   .subscribe((countries) => (this.allCountries = countries));
+
+  getAllCountries() {
+    return this.http.get<Country[]>(`${environment.apiBaseAllCountries}`);
+  }
 
   constructor(
     private http: HttpClient,
@@ -65,10 +80,6 @@ export class ApiCallsService {
       `${environment.jsonServerBase}/myMovies`,
       saveCreatedMovie
     );
-  }
-
-  getAllCountries() {
-    return this.http.get<Country[]>(`${environment.apiBaseAllCountries}`);
   }
 
   getCreateddMovie(): Observable<addMyMovie[]> {

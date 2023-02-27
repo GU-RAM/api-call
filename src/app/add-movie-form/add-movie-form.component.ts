@@ -37,19 +37,28 @@ export class AddMovieFormComponent {
       icon: '💀',
     },
   ];
-  form: FormGroup<addMyMovieForm> = this.buildForm();
+  countries: string[] = [];
 
-  // <i class="fa-regular fa-masks-theater"></i>
-  // <i class="fa-regular fa-face-laugh"></i>
-  // <i class="fa-solid fa-gun"></i>
-  // <i class="fa-regular fa-sword"></i>
-  // <i class="fa-sharp fa-solid fa-skull"></i>
+  form: FormGroup<addMyMovieForm> = this.buildForm();
 
   constructor(
     private fb: FormBuilder,
     public apiCallService: ApiCallsService,
     private router: Router
-  ) {}
+  ) {
+    this.apiCallService
+      .getAllCountries()
+      .pipe(
+        map((allCountriesInfo) => {
+          const countryNamesArray = allCountriesInfo.map((country) => {
+            return country.name.common;
+          });
+
+          return countryNamesArray;
+        })
+      )
+      .subscribe((x) => this.countries.push(...x));
+  }
 
   get removeBtnDisabled() {
     return this.form.controls.countries.length === 1;
@@ -59,7 +68,7 @@ export class AddMovieFormComponent {
     return this.form.controls.countries.length === 7;
   }
 
-  countries: string[] = [];
+  // countries: string[] = [];
 
   updateMinutesNumOfSeriesValidation() {
     const minutesControl = this.form.get('minutes');
@@ -90,7 +99,7 @@ export class AddMovieFormComponent {
   handleSubmission() {
     this.updateMinutesNumOfSeriesValidation();
     this.isSubmitted = true;
-    console.log(this.form.controls);
+    console.log(this.form);
   }
 
   getCurrentDate(): string {
@@ -185,5 +194,7 @@ export class AddMovieFormComponent {
     this.form.controls.name.addAsyncValidators(
       movieExistsValidator(this.apiCallService)
     );
+    console.log(this.countries);
+    console.log(this.form);
   }
 }

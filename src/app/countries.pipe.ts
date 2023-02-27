@@ -13,25 +13,55 @@ export class CountriesPipe implements PipeTransform {
     arr: any,
     used: (string | null)[] | undefined,
     self: string | null
-  ): Observable<string[]> {
-    return this.apiCallService.getAllCountries().pipe(
-      map((allCountries: Country[]) => {
-        const countryNamesArray = allCountries.map((country) => {
-          return country.name.common;
-        });
+  ): string[] {
+    if (self) {
+      return arr.filter((x: string) => {
+        if (x === self) {
+          return true;
+        }
 
-        return countryNamesArray.filter((x) => {
-          if (x === self) {
-            return true;
-          }
+        if (!used?.includes(x)) {
+          return true;
+        }
 
-          if (!used?.includes(x)) {
-            return true;
-          }
+        return false;
+      });
+    }
 
-          return false;
-        });
-      })
-    );
+    return arr;
   }
 }
+// {
+//   let count = 0;
+//   const gur = arr.filter((x: string) => {
+//     if (x === self) {
+//       return true;
+//     }
+
+//     if (used?.includes(x)) {
+//       console.log(used?.includes(x));
+//       return false;
+//     }
+
+//     // console.log(count++);
+//     return false;
+//   });
+
+//   console.log('sul', used);
+
+//   if (self) {
+//     return arr.filter((x: string) => {
+//       if (x === self) {
+//         return true;
+//       }
+
+//       if (!used?.includes(x)) {
+//         return true;
+//       }
+
+//       return false;
+//     });
+//   }
+
+//   return arr;
+// }

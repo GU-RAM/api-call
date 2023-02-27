@@ -17,10 +17,13 @@ import { addMyMovie, Movie } from './search.model';
 
 class ApiService {
   constructor(private apiCallService: ApiCallsService) {}
+  mar: any;
 
   checkMovieExists(movieName: string): Observable<boolean> {
     return this.apiCallService.getSavedMovie().pipe(
       map((response) => {
+        this.mar = response;
+        console.log(this.mar);
         let movieExists = response.some(
           (movie: Movie) => movie.Title.toLocaleLowerCase() === movieName
         );
@@ -59,6 +62,8 @@ export function movieExistsValidator(
     const apiService = new ApiService(apiCallService);
 
     return apiService.checkMovieExists(control.value).pipe(
+      debounceTime(2900),
+      distinctUntilChanged(),
       map((movieExists) => {
         return movieExists ? { movieExists } : null;
       })
